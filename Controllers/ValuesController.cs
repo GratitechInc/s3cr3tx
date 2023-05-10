@@ -917,7 +917,7 @@ namespace s3cr3tx.Controllers
                     {
                         if (EorD)
                         {
-                            using (RSACryptoServiceProvider rSA1 = new RSACryptoServiceProvider())
+                            using (RSACryptoServiceProvider rSA1 = new RSACryptoServiceProvider(4096))
                             {
                                 rSA1.FromXmlString(eb.kyp);
                                 byte[] bytInput = System.Text.Encoding.Convert(System.Text.Encoding.GetEncoding(0), System.Text.Encoding.UTF8, System.Text.Encoding.GetEncoding(0).GetBytes(input));
@@ -930,7 +930,7 @@ namespace s3cr3tx.Controllers
                         {
                             string strB64Pri = eb.ky;
                             string strPriXML = System.Text.Encoding.GetEncoding(0).GetString(System.Text.Encoding.Convert(System.Text.Encoding.UTF8, System.Text.Encoding.GetEncoding(0), System.Convert.FromBase64String(strB64Pri)));
-                            RSACryptoServiceProvider rSA2 = new RSACryptoServiceProvider();
+                            RSACryptoServiceProvider rSA2 = new RSACryptoServiceProvider(4096);
                             rSA2.FromXmlString(strPriXML);
                             string stringDec = System.Text.Encoding.GetEncoding(0).GetString(System.Text.Encoding.Convert(System.Text.Encoding.UTF8, System.Text.Encoding.GetEncoding(0), (rSA2.Decrypt(System.Convert.FromBase64String(input), true))));
                             result = stringDec;
@@ -942,7 +942,7 @@ namespace s3cr3tx.Controllers
                     ebundle eb = ebundle.GetEbundle(email);
                     if (eb.kyp is not null && !eb.kyp.Equals(@""))
                     {
-                        using (RSACryptoServiceProvider rSA1 = new RSACryptoServiceProvider())
+                        using (RSACryptoServiceProvider rSA1 = new RSACryptoServiceProvider(4096))
                         {
                             rSA1.FromXmlString(eb.kyp);
                             byte[] bytInput = System.Text.Encoding.Convert(System.Text.Encoding.GetEncoding(0), System.Text.Encoding.UTF8, System.Text.Encoding.GetEncoding(0).GetBytes(input));
@@ -959,7 +959,7 @@ namespace s3cr3tx.Controllers
                     {
                         string strB64Pri = eb.ky;
                         //string strPriXML = System.Text.Encoding.GetEncoding(0).GetString(System.Text.Encoding.Convert(System.Text.Encoding.UTF8, System.Text.Encoding.GetEncoding(0), System.Convert.FromBase64String(strB64Pri)));
-                        RSACryptoServiceProvider rSA2 = new RSACryptoServiceProvider();
+                        RSACryptoServiceProvider rSA2 = new RSACryptoServiceProvider(4096);
                         rSA2.FromXmlString(strB64Pri);
                         string stringDec = System.Text.Encoding.GetEncoding(0).GetString(System.Text.Encoding.Convert(System.Text.Encoding.UTF8, System.Text.Encoding.GetEncoding(0), (rSA2.Decrypt(System.Convert.FromBase64String(input), true))));
                         result = stringDec;
@@ -999,7 +999,7 @@ namespace s3cr3tx.Controllers
                 ebundle eb = ebundle.GetEbundle(email);
                 if (eb.kyp is not null && !eb.kyp.Equals(@""))
                 {
-                    using (RSACryptoServiceProvider rSA1 = new RSACryptoServiceProvider())
+                    using (RSACryptoServiceProvider rSA1 = new RSACryptoServiceProvider(4096))
                     {
                         rSA1.FromXmlString(eb.kyp);
                         byte[] bytInput = System.Text.Encoding.Convert(System.Text.Encoding.GetEncoding(0), System.Text.Encoding.UTF8, System.Text.Encoding.GetEncoding(0).GetBytes(input));
@@ -1043,7 +1043,7 @@ namespace s3cr3tx.Controllers
                 {
                     string strB64Pri = eb.ky;
                     //string strPriXML = System.Text.Encoding.GetEncoding(0).GetString(System.Text.Encoding.Convert(System.Text.Encoding.UTF8, System.Text.Encoding.GetEncoding(0), System.Convert.FromBase64String(strB64Pri)));
-                    RSACryptoServiceProvider rSA2 = new RSACryptoServiceProvider();
+                    RSACryptoServiceProvider rSA2 = new RSACryptoServiceProvider(4096);
                     rSA2.FromXmlString(strB64Pri);
                     string stringDec = System.Text.Encoding.GetEncoding(0).GetString(System.Text.Encoding.Convert(System.Text.Encoding.UTF8, System.Text.Encoding.GetEncoding(0), (rSA2.Decrypt(System.Convert.FromBase64String(input), true))));
                     result = stringDec;
