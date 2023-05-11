@@ -177,11 +177,11 @@ namespace s3cr3tx.Pages
         private string GetS3cr3txD(string strS3cr3tx)
         {
             try { 
-            string strEmail = @"support@s3cr3tx.com";
-            string strAuth = @"bMOgesKqUER7w6I5w79Ewo/DrMK3w7vCsMW4BMWhYz8p4oCd4oC6woFvNsOcw49PwqnCrBRRxb49IuKAmWvCoTbDqcK24oCwc+KAsEMZAFZIw7HDiR3CsjJsfQZbw4HDpcOLy4Y=";
-            string strCode = @"wq/DisON4oCaPcOXw7k3UFlCwo3DrcOvQ8KtInYTw57CtHLDm8K5AcuGSQp/WnLigJ0sSMODwqHDlhsVw6EnThYUwp3Conx0xb5vw77igKYyW1zFk1vCqFw6w5HDv8K1Dw==";
+            string strEmail = Environment.GetEnvironmentVariable(@"s3cr3tx_mail_usr");
+            string strAuth = Environment.GetEnvironmentVariable(@"s3cr3tx_a");
+            string strCode = Environment.GetEnvironmentVariable(@"s3cr3tx_c");
             WebClient wc = new WebClient();
-            wc.BaseAddress = @"https://s3cr3tx.com/Values";
+            wc.BaseAddress = Environment.GetEnvironmentVariable(@"s3cr3tx_api");
             WebHeaderCollection webHeader = new WebHeaderCollection();
             webHeader.Add(@"Email:" + strEmail);
             webHeader.Add(@"AuthCode:" + strCode);
@@ -191,7 +191,7 @@ namespace s3cr3tx.Pages
             webHeader.Add(@"Def:" + @"z");
             wc.Headers = webHeader;
             string result = @"";
-            result = wc.DownloadString(@"https://s3cr3tx.com/Values");
+            result = wc.DownloadString(Environment.GetEnvironmentVariable(@"s3cr3tx_api"));
             return result;
             }
             catch (Exception ex)
@@ -199,7 +199,7 @@ namespace s3cr3tx.Pages
                 //string strResult = @"";
                 string strSource = @"s3cr3tx.api.ConfirmPage.OnGet";
                 s3cr3tx.Controllers.ValuesController.LogIt(ex.GetBaseException().ToString(), strSource);
-                Redirect(@"https://s3cr3tx.com/Login");
+                Redirect(Environment.GetEnvironmentVariable(@"s3cr3tx_plogin"));
                 return @"";
             }
         }
